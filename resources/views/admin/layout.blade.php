@@ -199,6 +199,7 @@
                 <span class="dropdown-item dropdown-header">Admin Menu</span>
                 <div class="dropdown-divider"></div>
 
+
                 <div class="dropdown-divider"></div>
                 <a href="{{ route('logout') }}" class="dropdown-item"
                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -232,6 +233,12 @@
                 <p>Leaderboard</p>
               </a>
             </li>
+            <li class="nav-item">
+            <a href="{{ route('profile.edit') }}" class="nav-link {{ Request::routeIs('profile.edit') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-user-edit"></i>
+                <p>Edit Profile</p>
+            </a>
+            </li>
 
             <li class="nav-header">MANAJEMEN KONTEN</li>
 
@@ -262,6 +269,15 @@
                   </p>
                 </a>
             </li>
+           <li class="nav-item">
+                <a href="{{ route('hasilkuis.history') }}" class="nav-link {{ Request::routeIs('hasilkuis.history') ? 'active' : '' }}">
+                    <i class="nav-icon fas fa-history"></i>
+                    <p>
+                        History Kuis
+                    </p>
+                </a>
+            </li>
+
           </ul>
         </nav>
         </div>
@@ -313,11 +329,11 @@
   <script src="{{ asset('template/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
   <script src="{{ asset('template/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
   <script src="{{ asset('template/plugins/jszip/jszip.min.js') }}"></script>
-  <script src="{{ asset('template/plugins/pdfmake/pdfmake.min.js') }}"></script>
-  <script src="{{ asset('template/plugins/pdfmake/vfs_fonts.js') }}"></script>
-  <script src="{{ asset('template/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+  {{-- <script src="{{ asset('template/plugins/pdfmake/pdfmake.min.js') }}"></script>
+  <script src="{{ asset('template/plugins/pdfmake/vfs_fonts.js') }}"></script> --}}
+  {{-- <script src="{{ asset('template/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
   <script src="{{ asset('template/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
-  <script src="{{ asset('template/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+  <script src="{{ asset('template/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script> --}}
 
   {{-- SCRIPT BARU: SweetAlert2 (INI YANG PALING PENTING) --}}
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

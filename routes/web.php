@@ -5,6 +5,7 @@ use App\Http\Controllers\quizController;
 use App\Http\Controllers\MateriController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\LoginCheck;
+use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\LoggedIn;
 
 Route::get('/', function () {
@@ -49,7 +50,10 @@ Route::middleware(LoggedIn::class)->group(function () {
     Route::delete('/kuisdelete/{id}', [quizController::class, 'destroy'])->name('kuisdelete');
 
     // Route hasil kuis (riwayat)
-    Route::get('/hasilkuis', [quizController::class, 'daftarHasilKuis'])->name('hasilkuis.index');
+    Route::get('/hasilkuis', [quizController::class, 'daftarHasilKuisTerbaru'])->name('hasilkuis.index');
+
+// Route BARU untuk mengunduh PDF
+Route::get('/hasil-kuis/pdf', [quizController::class, 'downloadPDF'])->name('hasilkuis.pdf');
 
     // ===================================================================
     // == RUTE BARU UNTUK HAPUS HASIL KUIS ==
@@ -60,5 +64,18 @@ Route::middleware(LoggedIn::class)->group(function () {
 
     // Jika ingin route untuk leaderboard (sudah ada)
     Route::get('/leaderboard', [quizController::class, 'leaderboard'])->name('leaderboard');
+    Route::get('hasilkuis/history', [quizController::class, 'historyHasilKuis'])->name('hasilkuis.history');
+    Route::get('hasilkuis/history/pdf', [App\Http\Controllers\quizController::class, 'downloadHistoryPDF'])
+    ->name('hasilkuis.history.pdf');
+      Route::post('history/destroy-batch', [quizController::class, 'destroyBatch'])->name('hasilkuis.history.destroyBatch');
+
+    // Hapus semua history hasil kuis
+    Route::delete('history/destroy-all', [quizController::class, 'destroyAll'])->name('hasilkuis.history.destroyAll');
+
+
+    // Profile routes
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+
 
 });

@@ -9,6 +9,7 @@ namespace App\Models {
      * @property bool $benar
      * @property string $jawaban_user
      * @property mixed $kuis_id
+     * @property string $attempt_id
      * @property mixed $siswa_id
      * @property mixed $waktu
      * @property \Illuminate\Support\Carbon|null $updated_at
@@ -21,6 +22,7 @@ namespace App\Models {
      * @method static \Illuminate\Database\Eloquent\Builder<HasilKuis>|HasilKuis whereUpdatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder<HasilKuis>|HasilKuis whereWaktu($value)
      * @method static \Illuminate\Database\Eloquent\Builder<HasilKuis>|HasilKuis whereSiswaId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<HasilKuis>|HasilKuis whereAttemptId($value)
      * @method static \Illuminate\Database\Eloquent\Builder<HasilKuis>|HasilKuis whereKuisId($value)
      * @method static \Illuminate\Database\Eloquent\Builder<HasilKuis>|HasilKuis whereJawabanUser($value)
      * @method static \Illuminate\Database\Eloquent\Builder<HasilKuis>|HasilKuis whereBenar($value)
@@ -2182,10 +2184,10 @@ namespace App\Models {
      * @property string $password
      * @property string $email
      * @property string $no_hp
-     * @property string $nama
+     * @property string $name
      * @property int $id
      * @method static \Illuminate\Database\Eloquent\Builder<UserModel>|UserModel whereId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder<UserModel>|UserModel whereNama($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<UserModel>|UserModel whereName($value)
      * @method static \Illuminate\Database\Eloquent\Builder<UserModel>|UserModel whereNoHp($value)
      * @method static \Illuminate\Database\Eloquent\Builder<UserModel>|UserModel whereEmail($value)
      * @method static \Illuminate\Database\Eloquent\Builder<UserModel>|UserModel wherePassword($value)

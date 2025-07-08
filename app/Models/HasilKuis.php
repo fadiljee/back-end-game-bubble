@@ -8,7 +8,6 @@ class HasilKuis extends Model
 {
     protected $table = 'hasil_kuis';
 
-    // Kolom yang boleh diisi massal
     protected $fillable = [
         'siswa_id',
         'kuis_id',
@@ -16,15 +15,14 @@ class HasilKuis extends Model
         'benar',
         'waktu',
         'nilai',
+        'attempt_id',   // tambahkan ini
     ];
 
-    // Relasi ke model Siswa (banyak hasil kuis milik satu siswa)
     public function siswa()
     {
         return $this->belongsTo(Siswa::class);
     }
 
-    // Relasi ke model Kuis (banyak hasil kuis milik satu kuis)
     public function kuis()
     {
         return $this->belongsTo(Kuis::class);

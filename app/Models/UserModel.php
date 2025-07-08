@@ -10,4 +10,10 @@ class UserModel extends Model
     //
     protected $table = 'data_user';
     protected $primaryKey = 'id';
+       protected $fillable = [
+    'name',
+    'no_hp',
+    'email',
+    'password',
+];
 }

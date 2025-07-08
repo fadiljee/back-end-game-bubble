@@ -6,6 +6,7 @@ use App\Models\Siswa;
 use App\Models\Kuis;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Materi;
+use App\Models\UserModel;
 use App\Rules\LoginCheck;
 use Illuminate\Support\Facades\Session;
 
@@ -89,14 +90,27 @@ class UserController extends Controller
     }
 
 
-    function proseslogin(Request $request)
-    {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => ['required', new LoginCheck($request)]
+   public function proseslogin(Request $request)
+{
+    // Validasi input login dulu (email, password)
+
+    // Cek user berdasarkan email
+    $user = UserModel::where('email', $request->email)->first();
+
+    // Jika user ada dan password cocok
+    if ($user && Hash::check($request->password, $user->password)) {
+        // Simpan session loginStatus dan user_id
+        session([
+            'loginStatus' => true,
+            'user_id' => $user->id,
         ]);
-        return redirect()->route('dataSiswa');
+        return redirect()->route('dashboardadmin');
     }
+
+    // Kalau gagal login
+    return redirect()->back()->withErrors(['email' => 'Email atau password salah']);
+}
+
 
     function logout()
     {

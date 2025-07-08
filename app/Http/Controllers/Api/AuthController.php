@@ -161,6 +161,7 @@ class AuthController extends Controller
             'kuis_id' => 'required|integer',
             'jawaban_user' => 'required|string|in:A,B,C,D,E', // E untuk waktu habis
             'waktu' => 'required|integer|min:0',
+            'attempt_id' => 'required|string',
         ]);
 
         $kuis = Kuis::findOrFail($request->kuis_id);
@@ -170,15 +171,15 @@ class AuthController extends Controller
         $nilai = $benar ? $kuis->nilai : 0;
 
         // Gunakan updateOrCreate untuk efisiensi
-        $hasil = HasilKuis::updateOrCreate(
-            ['siswa_id' => $request->siswa_id, 'kuis_id' => $request->kuis_id],
-            [
-                'jawaban_user' => $request->jawaban_user,
-                'waktu' => $request->waktu,
-                'benar' => $benar,
-                'nilai' => $nilai
-            ]
-        );
+        $hasil = HasilKuis::create([
+        'siswa_id'     => $request->siswa_id,
+        'attempt_id' => $request->attempt_id,
+        'kuis_id'      => $request->kuis_id,
+        'jawaban_user' => $request->jawaban_user,
+        'waktu'        => $request->waktu,
+        'benar'        => $benar,
+        'nilai'        => $nilai
+    ]);
 
         return response()->json([
             'status' => 'success',
